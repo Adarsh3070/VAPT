@@ -7,7 +7,7 @@ single guided workflow, and outputs a formatted HTML report.
 
 > ⚠️ **Authorized use only.** Run this only against systems you own or
 > have explicit written permission to test — your own lab VMs
-> (Metasploitable2, DVWA), or an authorized CTF/HTB/THM target.
+> (Metasploitable 2, DVWA), or an authorized CTF/HTB/THM target.
 > Unauthorized scanning/exploitation is illegal under India's IT Act
 > (Section 43/66) and equivalent laws elsewhere. The tool itself
 > refuses to run unless you pass `--i-have-authorization`.
@@ -32,7 +32,7 @@ single guided workflow, and outputs a formatted HTML report.
    inventory, service banners, and a findings table (color-coded by
    severity).
 
-## Setup (in your Kali VM)
+## Setup (in Kali VM)
 
 ```bash
 # System tools (Kali ships with most of these already)
@@ -55,6 +55,8 @@ msfrpcd -P yourpassword -S -a 127.0.0.1 -p 55553
 
 ```bash
 # Basic scan + HTML report
+> **Note:** Replace the example IP address with the IP address of your
+> authorized lab target. Ensure the target is reachable from your Kali VM.
 python main.py --target 192.168.56.101 --ports 1-1000 --i-have-authorization
 
 # + vuln NSE scripts + Exploit-DB lookup
@@ -69,14 +71,11 @@ Open `vapt_report.html` in a browser to see the formatted report.
 
 ## Recommended lab targets (for testing/demo)
 
-Since you already have the Kali VM running on VMware, add a second
-VM on the same host-only network as your test target:
-
-- **Metasploitable2** — deliberately vulnerable Linux VM, perfect for
-  demoing this tool end-to-end (has old FTP/SSH/Samba/etc versions
-  with known CVEs).
-- **DVWA** (Damn Vulnerable Web App) — if you want to extend the
-  toolkit later with a Burp Suite / web-app scanning module.
+- **Metasploitable 2** — A deliberately vulnerable Linux virtual
+  machine suitable for practicing network reconnaissance and
+  vulnerability assessment in an isolated lab.
+- **DVWA (Damn Vulnerable Web Application)** — A practice environment
+  for web application security testing and future toolkit extensions.
 
 ## Project structure
 
@@ -98,7 +97,7 @@ vapt-toolkit/
 
 1. **Objective** — as per assignment: identify vulnerabilities in a
    simulated environment and perform penetration testing.
-2. **Environment** — Kali VM (attacker) + Metasploitable2 VM (target)
+2. **Environment** — Kali VM (attacker) + Metasploitable 2 VM (target)
    on an isolated host-only VMware network (screenshot your VM
    network settings to show it's isolated).
 3. **Methodology** — recon → vuln scan → exploit-DB cross-reference →
@@ -111,7 +110,7 @@ vapt-toolkit/
 ## Extending it further
 
 - Add a Burp Suite / OWASp ZAP module for web app scanning (maps to
-  the "web application" part of your assignment brief).
+  the "web application").
 - Add Nessus API integration (`.nessus` XML parsing) alongside Nmap
   for a second vulnerability data source.
 - Add CVSS scoring lookup (NVD API) to auto-rank findings by
